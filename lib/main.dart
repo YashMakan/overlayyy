@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:overlayyy/login_button.dart';
-import 'package:overlayyy/media_player.dart';
-import 'package:overlayyy/state/spotify_cubit.dart';
+import 'package:overlayyy/presentation/widgets/login_button.dart';
+import 'package:overlayyy/presentation/widgets/media_player.dart';
+import 'package:overlayyy/presentation/cubit/spotify_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,7 +76,7 @@ class _PipContentWidgetState extends State<PipContentWidget> {
           builder: (context, state) {
             if (!state.isLoggedIn) {
               return LoginButton(
-                onPressed: () => context.read<SpotifyCubit>().authenticate(),
+                onPressed: () {},
               );
             } else if (state.isSongPlaying) {
               return MediaPlayer(song: state.currentSong!);

@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SpotifyState {
-  AppConfiguration? get configuration => throw _privateConstructorUsedError;
   String? get accessToken => throw _privateConstructorUsedError;
   Song? get currentSong => throw _privateConstructorUsedError;
 
@@ -31,10 +30,7 @@ abstract class $SpotifyStateCopyWith<$Res> {
           SpotifyState value, $Res Function(SpotifyState) then) =
       _$SpotifyStateCopyWithImpl<$Res, SpotifyState>;
   @useResult
-  $Res call(
-      {AppConfiguration? configuration,
-      String? accessToken,
-      Song? currentSong});
+  $Res call({String? accessToken, Song? currentSong});
 
   $SongCopyWith<$Res>? get currentSong;
 }
@@ -52,15 +48,10 @@ class _$SpotifyStateCopyWithImpl<$Res, $Val extends SpotifyState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? configuration = freezed,
     Object? accessToken = freezed,
     Object? currentSong = freezed,
   }) {
     return _then(_value.copyWith(
-      configuration: freezed == configuration
-          ? _value.configuration
-          : configuration // ignore: cast_nullable_to_non_nullable
-              as AppConfiguration?,
       accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -93,10 +84,7 @@ abstract class _$$SpotifyStateImplCopyWith<$Res>
       __$$SpotifyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {AppConfiguration? configuration,
-      String? accessToken,
-      Song? currentSong});
+  $Res call({String? accessToken, Song? currentSong});
 
   @override
   $SongCopyWith<$Res>? get currentSong;
@@ -113,15 +101,10 @@ class __$$SpotifyStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? configuration = freezed,
     Object? accessToken = freezed,
     Object? currentSong = freezed,
   }) {
     return _then(_$SpotifyStateImpl(
-      configuration: freezed == configuration
-          ? _value.configuration
-          : configuration // ignore: cast_nullable_to_non_nullable
-              as AppConfiguration?,
       accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -137,11 +120,8 @@ class __$$SpotifyStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SpotifyStateImpl with DiagnosticableTreeMixin implements _SpotifyState {
-  const _$SpotifyStateImpl(
-      {this.configuration, this.accessToken, this.currentSong});
+  const _$SpotifyStateImpl({this.accessToken, this.currentSong});
 
-  @override
-  final AppConfiguration? configuration;
   @override
   final String? accessToken;
   @override
@@ -149,7 +129,7 @@ class _$SpotifyStateImpl with DiagnosticableTreeMixin implements _SpotifyState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SpotifyState(configuration: $configuration, accessToken: $accessToken, currentSong: $currentSong)';
+    return 'SpotifyState(accessToken: $accessToken, currentSong: $currentSong)';
   }
 
   @override
@@ -157,7 +137,6 @@ class _$SpotifyStateImpl with DiagnosticableTreeMixin implements _SpotifyState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'SpotifyState'))
-      ..add(DiagnosticsProperty('configuration', configuration))
       ..add(DiagnosticsProperty('accessToken', accessToken))
       ..add(DiagnosticsProperty('currentSong', currentSong));
   }
@@ -167,8 +146,6 @@ class _$SpotifyStateImpl with DiagnosticableTreeMixin implements _SpotifyState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SpotifyStateImpl &&
-            (identical(other.configuration, configuration) ||
-                other.configuration == configuration) &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.currentSong, currentSong) ||
@@ -176,8 +153,7 @@ class _$SpotifyStateImpl with DiagnosticableTreeMixin implements _SpotifyState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, configuration, accessToken, currentSong);
+  int get hashCode => Object.hash(runtimeType, accessToken, currentSong);
 
   @JsonKey(ignore: true)
   @override
@@ -188,12 +164,9 @@ class _$SpotifyStateImpl with DiagnosticableTreeMixin implements _SpotifyState {
 
 abstract class _SpotifyState implements SpotifyState {
   const factory _SpotifyState(
-      {final AppConfiguration? configuration,
-      final String? accessToken,
+      {final String? accessToken,
       final Song? currentSong}) = _$SpotifyStateImpl;
 
-  @override
-  AppConfiguration? get configuration;
   @override
   String? get accessToken;
   @override

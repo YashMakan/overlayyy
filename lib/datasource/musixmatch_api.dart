@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:overlayyy/models/env.dart';
-import 'package:overlayyy/models/song.dart';
+import 'package:overlayyy/core/env/env.dart';
+import 'package:overlayyy/data/models/song.dart';
 
 class MusixLyricsApi {
   static const String APP_ID = "web-desktop-app-v1.0";

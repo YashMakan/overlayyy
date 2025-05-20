@@ -5,9 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart';
-import 'package:overlayyy/models/app_configuration.dart';
-import 'package:overlayyy/models/env.dart';
-import 'package:overlayyy/models/song.dart';
+import 'package:overlayyy/core/env/env.dart';
+import 'package:overlayyy/data/models/song.dart';
 
 part 'spotify_cubit.freezed.dart';
 
@@ -25,49 +24,49 @@ class SpotifyCubit extends Cubit<SpotifyState> {
     emit(updatedState);
   }
 
-  Future<void> authenticate() async {
-    String getRedirectUri() {
-      if (kIsWeb) {
-        return 'http://127.0.0.1:5000/auth.html';
-      } else {
-        return 'myflutterapp://callback';
-      }
-    }
-
-    final redirectUri = getRedirectUri();
-
-    final authUrl =
-        'https://accounts.spotify.com/authorize?response_type=code&client_id=${state.configuration?.clientId}&redirect_uri=$redirectUri&scope=user-read-playback-state%20user-read-currently-playing';
-
-    final result = await FlutterWebAuth2.authenticate(
-      url: authUrl,
-      callbackUrlScheme: "myflutterapp",
-    );
-
-    final code = Uri.parse(result).queryParameters['code'];
-    if (code != null) {
-      final response = await post(
-        Uri.parse('https://accounts.spotify.com/api/token'),
-        headers: {
-          'Authorization':
-              'Basic ${base64Encode(utf8.encode('${state.configuration?.clientId}:${state.configuration?.clientSecret}'))}',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: {
-          'grant_type': 'authorization_code',
-          'code': code,
-          'redirect_uri': state.configuration?.redirectUri,
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final jsonResponse = json.decode(response.body);
-        emit(state.copyWith(accessToken: jsonResponse['access_token']));
-      } else {
-        print('Token exchange failed: ${response.body}');
-      }
-    }
-  }
+  // Future<void> authenticate() async {
+  //   String getRedirectUri() {
+  //     if (kIsWeb) {
+  //       return 'http://127.0.0.1:5000/auth.html';
+  //     } else {
+  //       return 'myflutterapp://callback';
+  //     }
+  //   }
+  //
+  //   final redirectUri = getRedirectUri();
+  //
+  //   final authUrl =
+  //       'https://accounts.spotify.com/authorize?response_type=code&client_id=${state.configuration?.clientId}&redirect_uri=$redirectUri&scope=user-read-playback-state%20user-read-currently-playing';
+  //
+  //   final result = await FlutterWebAuth2.authenticate(
+  //     url: authUrl,
+  //     callbackUrlScheme: "myflutterapp",
+  //   );
+  //
+  //   final code = Uri.parse(result).queryParameters['code'];
+  //   if (code != null) {
+  //     final response = await post(
+  //       Uri.parse('https://accounts.spotify.com/api/token'),
+  //       headers: {
+  //         'Authorization':
+  //             'Basic ${base64Encode(utf8.encode('${state.configuration?.clientId}:${state.configuration?.clientSecret}'))}',
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //       },
+  //       body: {
+  //         'grant_type': 'authorization_code',
+  //         'code': code,
+  //         'redirect_uri': state.configuration?.redirectUri,
+  //       },
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       final jsonResponse = json.decode(response.body);
+  //       emit(state.copyWith(accessToken: jsonResponse['access_token']));
+  //     } else {
+  //       print('Token exchange failed: ${response.body}');
+  //     }
+  //   }
+  // }
 
   Future<void> fetchCurrentPlayingSong() async {
     final accessToken = state.accessToken;

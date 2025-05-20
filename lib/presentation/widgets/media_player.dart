@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:overlayyy/models/song.dart';
-import 'package:overlayyy/state/spotify_cubit.dart';
+import 'package:overlayyy/data/models/song.dart';
+import 'package:overlayyy/presentation/cubit/spotify_cubit.dart';
 
 class MediaPlayer extends StatefulWidget {
   final Song song;
