@@ -11,6 +11,7 @@ Overlayyy is a Chrome extension that provides a Picture-in-Picture (PIP) mini-pl
 *   **Separate Lyrics Backend:** A Dart Shelf server fetches lyrics from Musixmatch.
 
 ## Folder Structure
+```
 overlayyy/
 ├── .env # Holds the Spotify access token (managed by refresh.sh)
 ├── build.sh # Main build script for the Chrome extension
@@ -25,6 +26,7 @@ overlayyy/
    ├── data/ # Data layer (models, repositories) for Flutter app
    ├── presentation/ # UI Layer (widgets, cubits/blocs) for Flutter app
    └── api.dart # Main server entry point
+```
 
 ## Prerequisites
 
