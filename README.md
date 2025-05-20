@@ -64,19 +64,12 @@ overlayyy/
         flutter pub get
         flutter pub run build_runner build --delete-conflicting-outputs
         ```
-    *   For the lyrics server:
-        ```bash
-        cd server
-        dart pub get
-        cd ..
-        ```
 
 ## Running the Application
 
 1.  **Start the Lyrics Server:**
     ```bash
-    cd server
-    dart run bin/server.dart
+    dart run lib/api.dart
     ```
     The server will typically start on `http://localhost:8081`.
 
