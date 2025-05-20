@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Overlayyy",
+  "version": "0.1.0",
+  "description": "Overlayyy: Spotify mini PIP player with realtime lyrics",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:8081/*",
+    "http://127.0.0.1:8081/*"
+  ],
+  "action": {
+    "default_title": "Overlayyy"
+  },
+  "background": {
+    "service_worker": "release_libs/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.spotify.com/*"
+      ],
+      "js": [
+        "release_libs/pip_content_script.js",
+        "release_libs/handle.js"
+      ],
+      "css": [
+        "release_libs/handle.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "index.html",
+        "main.dart.js",
+        "flutter.js",
+        "assets/*"
+      ],
+      "matches": [
+        "*://*.spotify.com/*"
+      ]
+    }
+  ]
+}
